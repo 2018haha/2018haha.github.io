@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":20,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="单源最短路算法——Dijkstra 实现方法：1.定义ans[100000]，ans[i]代表到达i点的最小花费 2.定义bool数组visit，代表是否来过这里 2.ans[起点]=0,其余的赋值为inf 3.定义一个curr变量，visit[current]=1（访问过），代表现在的位置，初始值为起点。 4.列举所有与curr相联通的的点，将这些点(i)的ans值更新： $ ans[i]=mi">
+<meta name="keywords" content="关键词">
+<meta property="og:type" content="article">
+<meta property="og:title" content="题解 P4779 【【模板】单源最短路径（标准版）】">
+<meta property="og:url" content="http://yoursite.com/2019/03/22/题解-P4779-【【模板】单源最短路径（标准版）】/index.html">
+<meta property="og:site_name" content="2018haha&#39;s Blog">
+<meta property="og:description" content="单源最短路算法——Dijkstra 实现方法：1.定义ans[100000]，ans[i]代表到达i点的最小花费 2.定义bool数组visit，代表是否来过这里 2.ans[起点]=0,其余的赋值为inf 3.定义一个curr变量，visit[current]=1（访问过），代表现在的位置，初始值为起点。 4.列举所有与curr相联通的的点，将这些点(i)的ans值更新： $ ans[i]=mi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn.luogu.org/upload/pic/43957.png">
+<meta property="og:updated_time" content="2019-03-22T07:03:10.611Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="题解 P4779 【【模板】单源最短路径（标准版）】">
+<meta name="twitter:description" content="单源最短路算法——Dijkstra 实现方法：1.定义ans[100000]，ans[i]代表到达i点的最小花费 2.定义bool数组visit，代表是否来过这里 2.ans[起点]=0,其余的赋值为inf 3.定义一个curr变量，visit[current]=1（访问过），代表现在的位置，初始值为起点。 4.列举所有与curr相联通的的点，将这些点(i)的ans值更新： $ ans[i]=mi">
+<meta name="twitter:image" content="https://cdn.luogu.org/upload/pic/43957.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/22/题解-P4779-【【模板】单源最短路径（标准版）】/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>题解 P4779 【【模板】单源最短路径（标准版）】 | 2018haha's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">2018haha's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">小标题</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/22/题解-P4779-【【模板】单源最短路径（标准版）】/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="2018haha">
+      <meta itemprop="description" content="描述">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="2018haha's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">题解 P4779 【【模板】单源最短路径（标准版）】<a href="https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name_posts/题解-P4779-【【模板】单源最短路径（标准版）】.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-22 15:02:24 / 修改时间：15:03:10" itemprop="dateCreated datePublished" datetime="2019-03-22T15:02:24+08:00">2019-03-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+			
+			
+					
+					  <span class="post-updated">
+						&nbsp; | &nbsp; post.updated
+						<time itemprop="dateUpdated" datetime="2019-03-22T15:03:10+08:00" content="2019-03-22">
+						  2019-03-22
+						</time>
+					  </span>
+					
+
+			
+			
+			
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">6.5k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">6 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="单源最短路算法——Dijkstra"><a href="#单源最短路算法——Dijkstra" class="headerlink" title="单源最短路算法——Dijkstra"></a>单源最短路算法——Dijkstra</h1><hr>
+<h2 id="实现方法："><a href="#实现方法：" class="headerlink" title="实现方法："></a>实现方法：</h2><p><strong>1.</strong>定义ans[100000]，ans[i]代表到达i点的最小花费</p>
+<p><strong>2.</strong>定义bool数组visit，代表是否来过这里</p>
+<p><strong>2.</strong>ans[起点]=0,其余的赋值为inf</p>
+<p><strong>3.</strong>定义一个curr变量，visit[current]=1（访问过），代表现在的位置，初始值为起点。</p>
+<p><strong>4.</strong>列举所有与curr相联通的的点，将这些点(i)的ans值更新：</p>
+<p>$ ans[i]=min(ans[i],ans[curr]+ $到这些点需要的花费 $)$</p>
+<p><strong>5.</strong> 列举所有访问过的的点，找到ans值最小的点，赋值给curr，visit[current]=1（访问过）</p>
+<p><strong>6</strong> 所有点都访问过（visit[i]都==1），程序结束。此时，ans[i]代表从起点到i的最短路径</p>
+<hr>
+<h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> vis[<span class="number">1000000</span>];<span class="comment">//是否访问过</span></span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">1000000</span>];</span><br><span class="line"><span class="keyword">int</span> curr=起点;</span><br><span class="line"><span class="built_in">memset</span>(ans,<span class="number">0x7fffffff</span>,<span class="keyword">sizeof</span>(ans))</span><br><span class="line"><span class="keyword">while</span>(vis[curr]==<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">	vis[curr]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i;列举所有curr连通的点）</span><br><span class="line">    &#123;</span><br><span class="line">    	ans[i]=min(ans[i],ans[curr]+k)<span class="comment">//k代表从curr点到i点的最短路</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> minn=<span class="number">2147483647</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)<span class="comment">//列举所有点</span></span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="keyword">if</span>(vis[i]==<span class="number">1</span>&amp;&amp;ans[i]&lt;minn)<span class="comment">//访问过且小</span></span><br><span class="line">        &#123;</span><br><span class="line">        	minn=ans[i];<span class="comment">//更新最小值</span></span><br><span class="line">            curr=i;<span class="comment">//更新下一个点</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="存图方式"><a href="#存图方式" class="headerlink" title="存图方式"></a>存图方式</h2><p>链式前向星<br><strong>以下是关于链式前向星的介绍 ，会的可以跳过：</strong></p>
+<h2 id="边的存储"><a href="#边的存储" class="headerlink" title="边的存储"></a>边的存储</h2><p>这种存图方式只需要开一个数组存储每个点引出的第一条边，然后存储每个点作为起点的每条边，这样就可以做到不重不漏。</p>
+<p>在链式前向星存图中，我们需要定义一个结构体：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">EDGE</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> next;</span><br><span class="line">    <span class="keyword">int</span> to;</span><br><span class="line">&#125;edge[<span class="number">1000000</span>];</span><br></pre></td></tr></table></figure></p>
+<p>和一个数组：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> head[<span class="number">1000000</span>];</span><br></pre></td></tr></table></figure></p>
+<p>和一个变量：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> cnt=<span class="number">0</span>;<span class="comment">//指针</span></span><br></pre></td></tr></table></figure></p>
+<p>你会发现竟然没存起点！！其实起点是用$head$存的</p>
+<h3 id="举例："><a href="#举例：" class="headerlink" title="举例："></a>举例：</h3><p> <img src="https://cdn.luogu.org/upload/pic/43957.png" alt></p>
+<p>如图：这样的一个有向图，输入是：</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">4</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h3 id="逐步分析："><a href="#逐步分析：" class="headerlink" title="逐步分析："></a>逐步分析：</h3><h4 id="1-输入1-2，代表1连向2。"><a href="#1-输入1-2，代表1连向2。" class="headerlink" title="1.输入1 2，代表1连向2。"></a>1.输入1 2，代表1连向2。</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cnt++;<span class="comment">//作为结构体下标，没有意义</span></span><br><span class="line">head[<span class="number">1</span>]=cnt;<span class="comment">//结点1的第一个儿子存在了edge[cnt]里面</span></span><br><span class="line">edge[cnt].to=<span class="number">2</span>;结点<span class="number">1</span>的儿子是<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>此时：<br>$cnt=1$</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$edge$</th>
+<th style="text-align:center">$cnt=1$</th>
+<th style="text-align:center">$cnt=2$</th>
+<th style="text-align:center">$ cnt=3$</th>
+<th style="text-align:center">$cnt=4$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$to $</td>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$ 0$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">$next$</td>
+<td style="text-align:center">$ 0 $</td>
+<td style="text-align:center">$0 $</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$head $</th>
+<th style="text-align:center">下标$=1 $</th>
+<th style="text-align:center">下标$=2$</th>
+<th style="text-align:center">下标$=3 $</th>
+<th style="text-align:center">下标$=4 $</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">值</td>
+<td style="text-align:center">$1 $</td>
+<td style="text-align:center">$ 0 $</td>
+<td style="text-align:center">$ 0 $</td>
+<td style="text-align:center">$ 0 $</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-输入1-3，代表1连向3。"><a href="#2-输入1-3，代表1连向3。" class="headerlink" title="2.输入1 3，代表1连向3。"></a>2.输入1 3，代表1连向3。</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cnt++;</span><br><span class="line">head[<span class="number">1</span>]=cnt;</span><br><span class="line">edge[cnt].to=<span class="number">3</span>;结点<span class="number">1</span>的儿子是<span class="number">3</span></span><br><span class="line"><span class="comment">//这时,3成为了结点1的儿子，不过2被挤了下去...</span></span><br><span class="line"><span class="comment">//所以要引入结构体中next元素，记录：3还有个兄弟（next）是2</span></span><br><span class="line"><span class="comment">//所以代码要换成：</span></span><br><span class="line">cnt++;</span><br><span class="line">edge[cnt].to=<span class="number">3</span>;<span class="comment">//结点1连向3</span></span><br><span class="line">edge[cnt].next=head[<span class="number">1</span>];<span class="comment">//3的兄弟是2</span></span><br><span class="line">head[<span class="number">1</span>]=cnt;<span class="comment">//更新head</span></span><br></pre></td></tr></table></figure>
+<p>此时：<br>$cnt=2$</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$edge$</th>
+<th style="text-align:center">$cnt=1$</th>
+<th style="text-align:center">$cnt=2$</th>
+<th style="text-align:center">$ cnt=3$</th>
+<th style="text-align:center">$cnt=4$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$to $</td>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$3$</td>
+<td style="text-align:center">$ 0$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">$next$</td>
+<td style="text-align:center">$ 0 $</td>
+<td style="text-align:center">$1 $</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$head $</th>
+<th style="text-align:center">下标$=1 $</th>
+<th style="text-align:center">下标$=2$</th>
+<th style="text-align:center">下标$=3 $</th>
+<th style="text-align:center">下标$=4 $</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">值</td>
+<td style="text-align:center">$2 $</td>
+<td style="text-align:center">$ 0 $</td>
+<td style="text-align:center">$ 0 $</td>
+<td style="text-align:center">$ 0 $</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-输入1-4，代表1连向4。"><a href="#3-输入1-4，代表1连向4。" class="headerlink" title="3.输入1 4，代表1连向4。"></a>3.输入1 4，代表1连向4。</h4><p>此时：<br>$cnt=3$</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$edge$</th>
+<th style="text-align:center">$cnt=1$</th>
+<th style="text-align:center">$cnt=2$</th>
+<th style="text-align:center">$ cnt=3$</th>
+<th style="text-align:center">$cnt=4$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$to $</td>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$3$</td>
+<td style="text-align:center">$ 4$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">$next$</td>
+<td style="text-align:center">$ 0 $</td>
+<td style="text-align:center">$1 $</td>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$head $</th>
+<th style="text-align:center">下标$=1 $</th>
+<th style="text-align:center">下标$=2$</th>
+<th style="text-align:center">下标$=3 $</th>
+<th style="text-align:center">下标$=4 $</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">值</td>
+<td style="text-align:center">$3 $</td>
+<td style="text-align:center">$ 0 $</td>
+<td style="text-align:center">$ 0 $</td>
+<td style="text-align:center">$ 0 $</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-输入2-3，代表2连向3。"><a href="#4-输入2-3，代表2连向3。" class="headerlink" title="4.输入2 3，代表2连向3。"></a>4.输入2 3，代表2连向3。</h4><p>此时：<br>$cnt=4$</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$edge$</th>
+<th style="text-align:center">$cnt=1$</th>
+<th style="text-align:center">$cnt=2$</th>
+<th style="text-align:center">$ cnt=3$</th>
+<th style="text-align:center">$cnt=4$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$to $</td>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$3$</td>
+<td style="text-align:center">$ 4$</td>
+<td style="text-align:center">$3$</td>
+</tr>
+<tr>
+<td style="text-align:center">$next$</td>
+<td style="text-align:center">$ 0 $</td>
+<td style="text-align:center">$1 $</td>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$0$</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$head $</th>
+<th style="text-align:center">下标$=1 $</th>
+<th style="text-align:center">下标$=2$</th>
+<th style="text-align:center">下标$=3 $</th>
+<th style="text-align:center">下标$=4 $</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">值</td>
+<td style="text-align:center">$3 $</td>
+<td style="text-align:center">$ 4 $</td>
+<td style="text-align:center">$ 0 $</td>
+<td style="text-align:center">$ 0 $</td>
+</tr>
+</tbody>
+</table>
+<h3 id="注意：-edge-cnt-next-和-head-1-存贮的都是结构体下标（即-cnt-的值）若要访问指向的边的编号，分别用-edge-edge-cnt-next-to-，-edge-head-1-to"><a href="#注意：-edge-cnt-next-和-head-1-存贮的都是结构体下标（即-cnt-的值）若要访问指向的边的编号，分别用-edge-edge-cnt-next-to-，-edge-head-1-to" class="headerlink" title="注意：$edge[cnt].next$ 和$head[1]$存贮的都是结构体下标（即$cnt$的值）若要访问指向的边的编号，分别用$edge[edge[cnt].next].to$，$edge[head[1]].to$"></a>注意：$edge[cnt].next$ 和$head[1]$存贮的都是结构体下标（即$cnt$的值）若要访问指向的边的编号，分别用$edge[edge[cnt].next].to$，$edge[head[1]].to$</h3><h4 id="若需要记录权值，在结构体中加入一个元素即可"><a href="#若需要记录权值，在结构体中加入一个元素即可" class="headerlink" title="若需要记录权值，在结构体中加入一个元素即可"></a>若需要记录权值，在结构体中加入一个元素即可</h4><p>代码：(带权值）<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span> </span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line">    <span class="keyword">int</span> next;</span><br><span class="line">    <span class="keyword">int</span> to;</span><br><span class="line">    <span class="keyword">int</span> wei;</span><br><span class="line">&#125;edge[MAXM];</span><br><span class="line"><span class="keyword">int</span> head[MAXN];<span class="comment">//head[i]为i点的第一条边</span></span><br><span class="line"><span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> w)</span> <span class="comment">//起点，终点，权值 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    edge[++cnt].next=head[u];<span class="comment">//更新cnt</span></span><br><span class="line">    edge[cnt].to=v;</span><br><span class="line">    edge[cnt].w=w;</span><br><span class="line">    head[u]=cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="keyword">int</span> a,b,wei;</span><br><span class="line">        addedge(a,b,wei);</span><br><span class="line">        <span class="comment">//如果是无向图，还要addedge(b,a,wei);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p> 这里的next指的是遍历时的下一条边，head指的是遍历时的第一条边，而存边时相当于反过来操作，所以next记录上一条边，而head记录最后一条边。</p>
+<hr>
+<h2 id="边的遍历"><a href="#边的遍历" class="headerlink" title="边的遍历"></a>边的遍历</h2><p>在遍历以x为起点的所有边时，只需要这样就行</p>
+<pre><code>for(int i=head[x];i!=0;i=edge[i].next)
+</code></pre><p>这个循环的结束条件是i等于0，因为最后一条边，也就是存边时第一条边，在把head值存进next时，head还没有更新过，也就是0。所以当next返回0时，就说明这些边遍历完毕了。</p>
+<hr>
+<h2 id="优势与特点"><a href="#优势与特点" class="headerlink" title="优势与特点"></a>优势与特点</h2><p>既可以存图，也可以存树，比起邻接矩阵，链式前向星的空间复杂度是O（n），大大节省了存储空间，因为按边存储省掉了很多两点无边的空间。并且在遍历的时候，那些与起点无边相连的点也不需要进行处理，可以说时间和空间都占优势，这就是被OIer们广泛使用的原因。</p>
+<hr>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> head[<span class="number">100000</span>],cnt;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans[<span class="number">1000000</span>];</span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">1000000</span>];</span><br><span class="line"><span class="keyword">int</span> m,n,s;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> to;</span><br><span class="line">	<span class="keyword">int</span> nextt;</span><br><span class="line">	<span class="keyword">int</span> wei;</span><br><span class="line">&#125;edge[<span class="number">1000000</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	edge[++cnt].to=y;</span><br><span class="line">	edge[cnt].wei=z;</span><br><span class="line">	edge[cnt].nextt=head[x];</span><br><span class="line">	head[x]=cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;m&gt;&gt;n&gt;&gt;s;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		ans[i]=<span class="number">2147483647</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	ans[s]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> a,b,c;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b&gt;&gt;c;</span><br><span class="line">		addedge(a,b,c);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> pos=s;</span><br><span class="line">	<span class="keyword">while</span>(vis[pos]==<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> minn=<span class="number">2147483647</span>;</span><br><span class="line">		vis[pos]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=head[pos];i!=<span class="number">0</span>;i=edge[i].nextt)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(!vis[edge[i].to]&amp;&amp;ans[edge[i].to]&gt;ans[pos]+edge[i].wei)</span><br><span class="line">			&#123;</span><br><span class="line">				ans[edge[i].to]=ans[pos]+edge[i].wei;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(ans[i]&lt;minn&amp;&amp;vis[i]==<span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				minn=ans[i];</span><br><span class="line">				pos=i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;ans[i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上是Dijkstra的基础介绍，上面的这份代码是不加优化的Dijkstra，能通过<br><a href="https://www.luogu.org/problemnew/show/P3371" target="_blank" rel="noopener">P3371单源最短路径（弱化版）</a><br>不过在这道题中会TLE。</p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>在上面第五步中：<br><code>5. 列举所有访问过的的点，找到ans值最小的点</code></p>
+<p>这一步由于每次都要遍历一遍所有点，复杂度为$O(n)$</p>
+<p>不过可以用堆（STL：优先队列）进行优化，复杂度为$O(logn)$</p>
+<h4 id="简单介绍优先队列"><a href="#简单介绍优先队列" class="headerlink" title="简单介绍优先队列"></a>简单介绍优先队列</h4><p>一种数据结构，支持找出数列中最大值，弹出最大值</p>
+<p>重载运算符后还可以维护最小值</p>
+<ul>
+<li>代码：</li>
+</ul>
+<p>头文件<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>定义<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">priority_queue&lt;<span class="keyword">int</span>&gt; q;</span><br></pre></td></tr></table></figure></p>
+<p>加入<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q.push(a);</span><br></pre></td></tr></table></figure></p>
+<p>弹出最大值<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q.pop()</span><br></pre></td></tr></table></figure></p>
+<p>查询最大值<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">q</span>.<span class="attribute">top</span>()</span><br></pre></td></tr></table></figure></p>
+<p>详细的可看<a href="https://www.luogu.org/problemnew/show/P3378" target="_blank" rel="noopener">P3378 【模板】堆</a></p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><p>对以上代码加入堆优化：</p>
+<p>由于每个点有两个值需要存储（$ans$值，点的编号）,所以要用结构体</p>
+<p>由于要找最小的点，所以用优先队列时需要重载运算符：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> ans;<span class="comment">//ans值</span></span><br><span class="line">    <span class="keyword">int</span> id;<span class="comment">//点编号</span></span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> node &amp;x)<span class="keyword">const</span><span class="comment">//重载运算符</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> x.ans&lt;ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> head[<span class="number">100000</span>],cnt;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans[<span class="number">1000000</span>];</span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">1000000</span>];</span><br><span class="line"><span class="keyword">int</span> m,n,s;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> to;</span><br><span class="line">	<span class="keyword">int</span> nextt;</span><br><span class="line">	<span class="keyword">int</span> wei;</span><br><span class="line">&#125;edge[<span class="number">1000000</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">priority</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> ans;</span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> priority &amp;x)<span class="keyword">const</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> x.ans&lt;ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	edge[++cnt].to=y;</span><br><span class="line">	edge[cnt].wei=z;</span><br><span class="line">	edge[cnt].nextt=head[x];</span><br><span class="line">	head[x]=cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">priority_queue&lt;priority&gt; q;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;m&gt;&gt;n&gt;&gt;s;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		ans[i]=<span class="number">2147483647</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	ans[s]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> a,b,c;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b&gt;&gt;c;</span><br><span class="line">		addedge(a,b,c);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> u;</span><br><span class="line">	q.push((priority)&#123;<span class="number">0</span>,s&#125;);</span><br><span class="line">    <span class="keyword">while</span>(!q.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        priority temp=q.top();</span><br><span class="line">        q.pop();</span><br><span class="line">        u=temp.id;</span><br><span class="line">        <span class="keyword">if</span>(!vis[u])</span><br><span class="line">        &#123;</span><br><span class="line">        	vis[u]=<span class="number">1</span>;</span><br><span class="line">	        <span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i;i=edge[i].nextt)</span><br><span class="line">	        &#123;</span><br><span class="line">	            <span class="keyword">int</span> v=edge[i].to;</span><br><span class="line">	            <span class="keyword">if</span>(ans[v]&gt;ans[u]+edge[i].wei)</span><br><span class="line">	            &#123;</span><br><span class="line">	                ans[v]=ans[u]+edge[i].wei;</span><br><span class="line">	                <span class="keyword">if</span>(!vis[v])</span><br><span class="line">	                &#123;</span><br><span class="line">	                    q.push((priority)&#123;ans[v],v&#125;);</span><br><span class="line">	                &#125;</span><br><span class="line">	            &#125;</span><br><span class="line">	        &#125;</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;ans[i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="感谢收看"><a href="#感谢收看" class="headerlink" title="感谢收看.."></a>感谢收看..</h4>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/22/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">2018haha</p>
+              <p class="site-description motion-element" itemprop="description">描述</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dgsyrc" title="GitHub &rarr; https://github.com/dgsyrc" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:yrcminecraft@qq.com" title="E-Mail &rarr; mailto:yrcminecraft@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.luogu.org/space/show?uid=89910" title="luogu &rarr; https://www.luogu.org/space/show?uid=89910" rel="noopener" target="_blank"><i class="fa fa-fw fa-code"></i>luogu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://space.bilibili.com/179225431?" title="bilibili &rarr; http://space.bilibili.com/179225431?" rel="noopener" target="_blank"><i class="fa fa-fw fa-tv"></i>bilibili</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://example.com" title="http://example.com" rel="noopener" target="_blank">2018haha</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#单源最短路算法——Dijkstra"><span class="nav-number">1.</span> <span class="nav-text">单源最短路算法——Dijkstra</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现方法："><span class="nav-number">1.1.</span> <span class="nav-text">实现方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪代码"><span class="nav-number">1.2.</span> <span class="nav-text">伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存图方式"><span class="nav-number">1.3.</span> <span class="nav-text">存图方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#边的存储"><span class="nav-number">1.4.</span> <span class="nav-text">边的存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#举例："><span class="nav-number">1.4.1.</span> <span class="nav-text">举例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逐步分析："><span class="nav-number">1.4.2.</span> <span class="nav-text">逐步分析：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-输入1-2，代表1连向2。"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">1.输入1 2，代表1连向2。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-输入1-3，代表1连向3。"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">2.输入1 3，代表1连向3。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-输入1-4，代表1连向4。"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">3.输入1 4，代表1连向4。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-输入2-3，代表2连向3。"><span class="nav-number">1.4.2.4.</span> <span class="nav-text">4.输入2 3，代表2连向3。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意：-edge-cnt-next-和-head-1-存贮的都是结构体下标（即-cnt-的值）若要访问指向的边的编号，分别用-edge-edge-cnt-next-to-，-edge-head-1-to"><span class="nav-number">1.4.3.</span> <span class="nav-text">注意：$edge[cnt].next$ 和$head[1]$存贮的都是结构体下标（即$cnt$的值）若要访问指向的边的编号，分别用$edge[edge[cnt].next].to$，$edge[head[1]].to$</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#若需要记录权值，在结构体中加入一个元素即可"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">若需要记录权值，在结构体中加入一个元素即可</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意："><span class="nav-number">1.4.3.2.</span> <span class="nav-text">注意：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#边的遍历"><span class="nav-number">1.5.</span> <span class="nav-text">边的遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优势与特点"><span class="nav-number">1.6.</span> <span class="nav-text">优势与特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.7.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化"><span class="nav-number">1.7.1.</span> <span class="nav-text">优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单介绍优先队列"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">简单介绍优先队列</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">1.7.2.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#感谢收看"><span class="nav-number">1.7.2.1.</span> <span class="nav-text">感谢收看..</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">2018haha</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">7k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">6 分钟</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="16,16,255" opacity="0.5" zindex="-1" count="100" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_lines.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+</body>
+</html>
