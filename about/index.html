@@ -24,6 +24,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/.min.css?v=1.0.2">
+
 
 
 
@@ -88,6 +95,16 @@
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
+</script>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
 </script>
 
 
@@ -164,6 +181,13 @@
 </noscript>
 
 </head>
+
+
+
+
+
+
+
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -667,9 +691,9 @@
     <span title="站点阅读时长">7 分钟</span>
   
 </div>
+ <!-- 
 
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+<div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
 
 
 
@@ -680,6 +704,7 @@
   <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
 
 
+-->
 
 
         
