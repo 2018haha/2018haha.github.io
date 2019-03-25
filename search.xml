@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[��������]]></title>
+    <url>%2F2019%2F03%2F25%2F%E5%8A%A0%E5%AF%86%E6%96%87%E7%AB%A0%2F</url>
+    <content type="text"><![CDATA[���������� Incorrect Password! No content to display! U2FsdGVkX19VV3h8wuLAonSmrQJUVoxPM+z7ffg47sc=]]></content>
+      <categories>
+        <category>����</category>
+      </categories>
+      <tags>
+        <tag>1</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hexo博客搭建记录]]></title>
     <url>%2F2019%2F03%2F23%2FHexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95%2F</url>
     <content type="text"><![CDATA[2019-3-22 博客搭建在2018haha.github.io上 2019-3-25 博客基本配置完毕 2019-3-25 博客增加了评论功能 搭建记录修改博客内容首次使用1.打开安装包安装Git，Node 2.下载hexo 12npm config set registry https://registry.npm.taobao.orgnpm install -g hexo 3.安装hexo 1hexo init 4.配置github 12git config --global user.email "zfMMG9000@163.com"git config --global user.name "2018haha" 5.绑定github密匙1ssh-keygen 并把路径中id_rsa.pub用记事本打开，复制到github的key上 更改博客设置有两个位置： hexo设置\_config.yml next主题设置\themes\hexo-theme-next-6.7.0\_config.yml 详细请百度 写文章hexo n &quot;文章名&quot; 在\source\_posts中找到文件并编辑 开头几个参数： 1234567---title: categories: 日志mathjax: truetags: [记录,笔记,日志]keywords: [1,2]--- 预览，发布预览：1hexo s 发布：12hexo ghexo d]]></content>
