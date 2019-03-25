@@ -96,16 +96,7 @@
     }
   };
 </script>
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                history.back();
-            }
-        }
-    })();
-</script>
+
 
 
   
@@ -474,7 +465,7 @@
         
           <a class="post-title-link" href="/2019/03/22/题解-P4779-【【模板】单源最短路径（标准版）】/" itemprop="url">
             
-              <span itemprop="name">题解 P4779 【【模板】单源最短路径（标准版）】</span>
+              <span itemprop="name">Dijkstra</span>
             
           </a>
         
@@ -595,6 +586,8 @@
                     
                       
                     
+                      
+                    
                     <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -607,6 +600,10 @@
                 <div class="site-state-item site-state-tags">
                   
                     
+                    
+                      
+                    
+                      
                     
                       
                     
@@ -744,7 +741,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">7k</span>
+    <span title="站点总字数">8k</span>
   
 
   
@@ -926,6 +923,32 @@
 
 
 
+
+  
+  
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments' ,
+      verify: true,
+      notify: false,
+      appId: 'CrBtILVsG60yujcdnIEAjEAU-gzGzoHsz',
+      appKey: 'GxYn8xOTbMm3Tiy4AjbT4Go4',
+      placeholder: '留下你的痕迹',
+      avatar: 'mm',
+      meta:guest,
+      pageSize: '10' || 10,
+      visitor: false
+    });
+  </script>
 
 
 
@@ -1385,6 +1408,9 @@
         sel.addRange(range);
         ta.setSelectionRange(0, code.length);
         var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
         
         ta.blur(); //For iOS
         $(this).blur();

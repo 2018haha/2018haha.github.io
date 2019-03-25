@@ -96,16 +96,7 @@
     }
   };
 </script>
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                history.back();
-            }
-        }
-    })();
-</script>
+
 
 
   
@@ -114,17 +105,17 @@
 
 
   <meta name="description" content="单源最短路算法——Dijkstra 实现方法：1.定义ans[100000]，ans[i]代表到达i点的最小花费 2.定义bool数组visit，代表是否来过这里 2.ans[起点]=0,其余的赋值为inf 3.定义一个curr变量，visit[current]=1（访问过），代表现在的位置，初始值为起点。 4.列举所有与curr相联通的的点，将这些点(i)的ans值更新： $ ans[i]=mi">
-<meta name="keywords" content="题解,洛谷,模板">
+<meta name="keywords" content="题解,模板,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="题解 P4779 【【模板】单源最短路径（标准版）】">
+<meta property="og:title" content="Dijkstra">
 <meta property="og:url" content="http://yoursite.com/2019/03/22/题解-P4779-【【模板】单源最短路径（标准版）】/index.html">
 <meta property="og:site_name" content="2018haha&#39;s Blog">
 <meta property="og:description" content="单源最短路算法——Dijkstra 实现方法：1.定义ans[100000]，ans[i]代表到达i点的最小花费 2.定义bool数组visit，代表是否来过这里 2.ans[起点]=0,其余的赋值为inf 3.定义一个curr变量，visit[current]=1（访问过），代表现在的位置，初始值为起点。 4.列举所有与curr相联通的的点，将这些点(i)的ans值更新： $ ans[i]=mi">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://cdn.luogu.org/upload/pic/43957.png">
-<meta property="og:updated_time" content="2019-03-24T14:23:44.312Z">
+<meta property="og:updated_time" content="2019-03-25T03:17:47.065Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="题解 P4779 【【模板】单源最短路径（标准版）】">
+<meta name="twitter:title" content="Dijkstra">
 <meta name="twitter:description" content="单源最短路算法——Dijkstra 实现方法：1.定义ans[100000]，ans[i]代表到达i点的最小花费 2.定义bool数组visit，代表是否来过这里 2.ans[起点]=0,其余的赋值为inf 3.定义一个curr变量，visit[current]=1（访问过），代表现在的位置，初始值为起点。 4.列举所有与curr相联通的的点，将这些点(i)的ans值更新： $ ans[i]=mi">
 <meta name="twitter:image" content="https://cdn.luogu.org/upload/pic/43957.png">
 
@@ -143,7 +134,7 @@
   };
 </script>
 
-  <title>题解 P4779 【【模板】单源最短路径（标准版）】 | 2018haha's Blog</title>
+  <title>Dijkstra | 2018haha's Blog</title>
   
 
 
@@ -412,7 +403,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">题解 P4779 【【模板】单源最短路径（标准版）】<a href="https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name_posts/题解-P4779-【【模板】单源最短路径（标准版）】.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+          <h1 class="post-title" itemprop="name headline">Dijkstra
 
               
             
@@ -455,7 +446,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-24 22:23:44" itemprop="dateModified" datetime="2019-03-24T22:23:44+08:00">2019-03-24</time>
+                <time title="修改时间：2019-03-25 11:17:47" itemprop="dateModified" datetime="2019-03-25T11:17:47+08:00">2019-03-25</time>
               
             
           </span>
@@ -464,8 +455,8 @@
 					
 					  <span class="post-updated">
 						&nbsp; | &nbsp; post.updated
-						<time itemprop="dateUpdated" datetime="2019-03-24T22:23:44+08:00" content="2019-03-24">
-						  2019-03-24
+						<time itemprop="dateUpdated" datetime="2019-03-25T11:17:47+08:00" content="2019-03-25">
+						  2019-03-25
 						</time>
 					  </span>
 					
@@ -485,7 +476,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/题解/" itemprop="url" rel="index"><span itemprop="name">题解</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
 
                 
                 
@@ -494,6 +485,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/22/题解-P4779-【【模板】单源最短路径（标准版）】/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/22/题解-P4779-【【模板】单源最短路径（标准版）】/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -816,9 +817,9 @@
           
             <a href="/tags/题解/" rel="tag"># 题解</a>
           
-            <a href="/tags/洛谷/" rel="tag"># 洛谷</a>
-          
             <a href="/tags/模板/" rel="tag"># 模板</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
           
         </div>
       
@@ -864,6 +865,10 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
 
   
 
@@ -932,6 +937,8 @@
                     
                       
                     
+                      
+                    
                     <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -944,6 +951,10 @@
                 <div class="site-state-item site-state-tags">
                   
                     
+                    
+                      
+                    
+                      
                     
                       
                     
@@ -1098,7 +1109,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">7k</span>
+    <span title="站点总字数">8k</span>
   
 
   
@@ -1284,6 +1295,32 @@
 
 
 
+
+  
+  
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments' ,
+      verify: true,
+      notify: false,
+      appId: 'CrBtILVsG60yujcdnIEAjEAU-gzGzoHsz',
+      appKey: 'GxYn8xOTbMm3Tiy4AjbT4Go4',
+      placeholder: '留下你的痕迹',
+      avatar: 'mm',
+      meta:guest,
+      pageSize: '10' || 10,
+      visitor: false
+    });
+  </script>
 
 
 
@@ -1743,6 +1780,9 @@
         sel.addRange(range);
         ta.setSelectionRange(0, code.length);
         var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
         
         ta.blur(); //For iOS
         $(this).blur();

@@ -96,16 +96,7 @@
     }
   };
 </script>
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                history.back();
-            }
-        }
-    })();
-</script>
+
 
 
   
@@ -406,7 +397,7 @@
     <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline"><a href="https://github.com/user-name/repo-name/tree/branch-name/subdirectory-namelib/bookmark/README.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+<h1 class="post-title" itemprop="name headline">
 
 </h1>
 
@@ -541,6 +532,10 @@
           
 
   
+    <div class="comments" id="comments">
+    </div>
+
+  
 
 
 
@@ -607,6 +602,8 @@
                     
                       
                     
+                      
+                    
                     <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -619,6 +616,10 @@
                 <div class="site-state-item site-state-tags">
                   
                     
+                    
+                      
+                    
+                      
                     
                       
                     
@@ -773,7 +774,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">7k</span>
+    <span title="站点总字数">8k</span>
   
 
   
@@ -959,6 +960,32 @@
 
 
 
+
+  
+  
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments' ,
+      verify: true,
+      notify: false,
+      appId: 'CrBtILVsG60yujcdnIEAjEAU-gzGzoHsz',
+      appKey: 'GxYn8xOTbMm3Tiy4AjbT4Go4',
+      placeholder: '留下你的痕迹',
+      avatar: 'mm',
+      meta:guest,
+      pageSize: '10' || 10,
+      visitor: false
+    });
+  </script>
 
 
 
@@ -1418,6 +1445,9 @@
         sel.addRange(range);
         ta.setSelectionRange(0, code.length);
         var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
         
         ta.blur(); //For iOS
         $(this).blur();
