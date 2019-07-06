@@ -98,7 +98,7 @@
 
 
   <meta name="description" content="前言本文发表于：  个人博客：传送门 洛谷博客：传送门  网络最大流算法能在信息学竞赛中处理很多问题，而且往往是不可被其它算法替代的。而最大流算法则是处理问题的方法之一。本文将介绍网络最大流的算法及其优化。 关于本文代码  存图方式：数组链式前项星。  网络最大流算法-Dinic前置知识几个概念 源点（S)：网络流流出的点 汇点（T)：网络流流入的点 流量：一条边上流过流的多少 容量：一条边最大流">
-<meta name="keywords" content="关键词">
+<meta name="keywords" content="网络流,最大流">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络最大流">
 <meta property="og:url" content="http://yoursite.com/2019/06/27/网络最大流/index.html">
@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/06/27/网络最大流/图1.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/27/网络最大流/图2.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/27/网络最大流/图3.png">
-<meta property="og:updated_time" content="2019-06-27T05:49:48.000Z">
+<meta property="og:updated_time" content="2019-07-06T05:42:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络最大流">
 <meta name="twitter:description" content="前言本文发表于：  个人博客：传送门 洛谷博客：传送门  网络最大流算法能在信息学竞赛中处理很多问题，而且往往是不可被其它算法替代的。而最大流算法则是处理问题的方法之一。本文将介绍网络最大流的算法及其优化。 关于本文代码  存图方式：数组链式前项星。  网络最大流算法-Dinic前置知识几个概念 源点（S)：网络流流出的点 汇点（T)：网络流流入的点 流量：一条边上流过流的多少 容量：一条边最大流">
@@ -428,12 +428,24 @@
                 
               
 
-              <time title="创建时间：2019-06-27 13:23:50 / 修改时间：13:49:48" itemprop="dateCreated datePublished" datetime="2019-06-27T13:23:50+08:00">2019-06-27</time>
+              <time title="创建时间：2019-06-27 13:23:00" itemprop="dateCreated datePublished" datetime="2019-06-27T13:23:00+08:00">2019-06-27</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-06 13:42:20" itemprop="dateModified" datetime="2019-07-06T13:42:20+08:00">2019-07-06</time>
               
             
           </span>
@@ -442,8 +454,8 @@
 					
 					  <span class="post-updated">
 						&nbsp; | &nbsp; post.updated
-						<time itemprop="dateUpdated" datetime="2019-06-27T13:49:48+08:00" content="2019-06-27">
-						  2019-06-27
+						<time itemprop="dateUpdated" datetime="2019-07-06T13:42:20+08:00" content="2019-07-06">
+						  2019-07-06
 						</time>
 					  </span>
 					
@@ -451,6 +463,31 @@
 			
 			
 			
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/网络流/" itemprop="url" rel="index"><span itemprop="name">网络流</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -600,6 +637,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/网络流/" rel="tag"># 网络流</a>
+          
+            <a href="/tags/最大流/" rel="tag"># 最大流</a>
+          
+        </div>
+      
 
       
       
@@ -618,6 +663,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/06/最小费用最大流/" rel="prev" title="最小费用最大流">
+                最小费用最大流 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -693,7 +742,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -712,7 +761,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -733,7 +786,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -830,7 +889,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">22k</span>
+    <span title="站点总字数">25k</span>
   
 
   
@@ -839,7 +898,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">20 分钟</span>
+    <span title="站点阅读时长">23 分钟</span>
   
 </div>
  <!-- 

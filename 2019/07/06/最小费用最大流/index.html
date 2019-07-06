@@ -97,27 +97,25 @@
 
 
 
-  <meta name="description" content="前言链式前向星是类似于邻接表的存图方式，具有空间复杂度小，便于遍历等优点，不过无法快速判断两点间是否有边 储存实现原理这种存图方式只需要开一个数组存储每个点引出的第一条边，然后存储每个点作为起点的每条边，这样就可以做到不重不漏。 在链式前向星存图中，我们需要定义一个结构体：12345struct EDGE &amp;#123;    int next;    int to;&amp;#125;edge[10000">
-<meta name="keywords" content="图论">
+  <meta name="description" content="前言本文发表于：  个人博客：链接 洛谷博客：链接  网络流是OI中比较常出现的算法，而最小费用最大流是其最常用的算法之一，阅读本文前，请确保掌握了网络最大流的Dinic的求法，详见网络最大流 最小费用最大流算法简介最小费用最大流（以下简称费用流），是在网络最大流的基础上，给每个边增加了另一个值——费用，代表每流过一个单位的流量，就会耗费这些费用。而费用流算法，就是在求最大流的同时，找出所花费用最">
+<meta name="keywords" content="网络流,费用流">
 <meta property="og:type" content="article">
-<meta property="og:title" content="链式前向星">
-<meta property="og:url" content="http://yoursite.com/2019/04/11/链式前向星/index.html">
+<meta property="og:title" content="最小费用最大流">
+<meta property="og:url" content="http://yoursite.com/2019/07/06/最小费用最大流/index.html">
 <meta property="og:site_name" content="2018haha&#39;s Blog">
-<meta property="og:description" content="前言链式前向星是类似于邻接表的存图方式，具有空间复杂度小，便于遍历等优点，不过无法快速判断两点间是否有边 储存实现原理这种存图方式只需要开一个数组存储每个点引出的第一条边，然后存储每个点作为起点的每条边，这样就可以做到不重不漏。 在链式前向星存图中，我们需要定义一个结构体：12345struct EDGE &amp;#123;    int next;    int to;&amp;#125;edge[10000">
+<meta property="og:description" content="前言本文发表于：  个人博客：链接 洛谷博客：链接  网络流是OI中比较常出现的算法，而最小费用最大流是其最常用的算法之一，阅读本文前，请确保掌握了网络最大流的Dinic的求法，详见网络最大流 最小费用最大流算法简介最小费用最大流（以下简称费用流），是在网络最大流的基础上，给每个边增加了另一个值——费用，代表每流过一个单位的流量，就会耗费这些费用。而费用流算法，就是在求最大流的同时，找出所花费用最">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://cdn.luogu.org/upload/pic/43957.png">
-<meta property="og:updated_time" content="2019-05-31T05:29:14.000Z">
+<meta property="og:updated_time" content="2019-07-06T05:45:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="链式前向星">
-<meta name="twitter:description" content="前言链式前向星是类似于邻接表的存图方式，具有空间复杂度小，便于遍历等优点，不过无法快速判断两点间是否有边 储存实现原理这种存图方式只需要开一个数组存储每个点引出的第一条边，然后存储每个点作为起点的每条边，这样就可以做到不重不漏。 在链式前向星存图中，我们需要定义一个结构体：12345struct EDGE &amp;#123;    int next;    int to;&amp;#125;edge[10000">
-<meta name="twitter:image" content="https://cdn.luogu.org/upload/pic/43957.png">
+<meta name="twitter:title" content="最小费用最大流">
+<meta name="twitter:description" content="前言本文发表于：  个人博客：链接 洛谷博客：链接  网络流是OI中比较常出现的算法，而最小费用最大流是其最常用的算法之一，阅读本文前，请确保掌握了网络最大流的Dinic的求法，详见网络最大流 最小费用最大流算法简介最小费用最大流（以下简称费用流），是在网络最大流的基础上，给每个边增加了另一个值——费用，代表每流过一个单位的流量，就会耗费这些费用。而费用流算法，就是在求最大流的同时，找出所花费用最">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/11/链式前向星/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/06/最小费用最大流/">
 
 
 
@@ -127,7 +125,7 @@
   };
 </script>
 
-  <title>链式前向星 | 2018haha's Blog</title>
+  <title>最小费用最大流 | 2018haha's Blog</title>
   
 
 
@@ -383,7 +381,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/11/链式前向星/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/06/最小费用最大流/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="2018haha">
@@ -400,7 +398,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">链式前向星
+          <h1 class="post-title" itemprop="name headline">最小费用最大流
 
               
             
@@ -426,24 +424,12 @@
                 
               
 
-              <time title="创建时间：2019-04-11 15:08:00" itemprop="dateCreated datePublished" datetime="2019-04-11T15:08:00+08:00">2019-04-11</time>
+              <time title="创建时间：2019-07-06 13:42:00 / 修改时间：13:45:28" itemprop="dateCreated datePublished" datetime="2019-07-06T13:42:00+08:00">2019-07-06</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-31 13:29:14" itemprop="dateModified" datetime="2019-05-31T13:29:14+08:00">2019-05-31</time>
               
             
           </span>
@@ -452,8 +438,8 @@
 					
 					  <span class="post-updated">
 						&nbsp; | &nbsp; post.updated
-						<time itemprop="dateUpdated" datetime="2019-05-31T13:29:14+08:00" content="2019-05-31">
-						  2019-05-31
+						<time itemprop="dateUpdated" datetime="2019-07-06T13:45:28+08:00" content="2019-07-06">
+						  2019-07-06
 						</time>
 					  </span>
 					
@@ -477,6 +463,13 @@
 
                 
                 
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/网络流/" itemprop="url" rel="index"><span itemprop="name">网络流</span></a></span>
+
+                
+                
               
             </span>
           
@@ -488,8 +481,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/04/11/链式前向星/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/04/11/链式前向星/" itemprop="commentCount"></span>
+                <a href="/2019/07/06/最小费用最大流/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/07/06/最小费用最大流/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -511,7 +504,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.7k</span>
+                <span title="本文字数">3.4k</span>
               
 
               
@@ -525,7 +518,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">2 分钟</span>
+                <span title="阅读时长">3 分钟</span>
               
             </div>
           
@@ -545,225 +538,25 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>链式前向星是类似于邻接表的存图方式，具有空间复杂度小，便于遍历等优点，不过无法快速判断两点间是否有边</p>
-<h1 id="储存"><a href="#储存" class="headerlink" title="储存"></a>储存</h1><h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>这种存图方式只需要开一个数组存储每个点引出的第一条边，然后存储每个点作为起点的每条边，这样就可以做到不重不漏。</p>
-<p>在链式前向星存图中，我们需要定义一个结构体：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">EDGE</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> next;</span><br><span class="line">    <span class="keyword">int</span> to;</span><br><span class="line">&#125;edge[<span class="number">1000000</span>];</span><br></pre></td></tr></table></figure></p>
-<p>和一个数组：<br><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int head[<span class="number">1000000</span>]<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
-<p>和一个变量：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> cnt=<span class="number">0</span>;<span class="comment">//指针</span></span><br></pre></td></tr></table></figure></p>
-<p>你会发现竟然没存起点！！其实起点是用$head$存的</p>
-<h2 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h2><p> <img src="https://cdn.luogu.org/upload/pic/43957.png" alt></p>
-<p>如图：这样的一个有向图，输入是：</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">4</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span></span><br></pre></td></tr></table></figure>
-<h3 id="逐步分析："><a href="#逐步分析：" class="headerlink" title="逐步分析："></a>逐步分析：</h3><h4 id="1-输入1-2，代表1连向2。"><a href="#1-输入1-2，代表1连向2。" class="headerlink" title="1.输入1 2，代表1连向2。"></a>1.输入1 2，代表1连向2。</h4><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cnt++;<span class="comment">//作为结构体下标，没有意义</span></span><br><span class="line">head[<span class="number">1</span>]=cnt;<span class="comment">//结点1的第一个儿子存在了edge[cnt]里面</span></span><br><span class="line">edge[cnt].to=<span class="number">2</span>;结点<span class="number">1</span>的儿子是<span class="number">2</span></span><br></pre></td></tr></table></figure>
-<p>此时：<br>$cnt=1$</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">$edge$</th>
-<th style="text-align:center">$cnt=1$</th>
-<th style="text-align:center">$cnt=2$</th>
-<th style="text-align:center">$ cnt=3$</th>
-<th style="text-align:center">$cnt=4$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$to $</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$0$</td>
-<td style="text-align:center">$ 0$</td>
-<td style="text-align:center">$0$</td>
-</tr>
-<tr>
-<td style="text-align:center">$next$</td>
-<td style="text-align:center">$ 0 $</td>
-<td style="text-align:center">$0 $</td>
-<td style="text-align:center">$0$</td>
-<td style="text-align:center">$0$</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">$head $</th>
-<th style="text-align:center">下标$=1 $</th>
-<th style="text-align:center">下标$=2$</th>
-<th style="text-align:center">下标$=3 $</th>
-<th style="text-align:center">下标$=4 $</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">值</td>
-<td style="text-align:center">$1 $</td>
-<td style="text-align:center">$ 0 $</td>
-<td style="text-align:center">$ 0 $</td>
-<td style="text-align:center">$ 0 $</td>
-</tr>
-</tbody>
-</table>
-<h4 id="2-输入1-3，代表1连向3。"><a href="#2-输入1-3，代表1连向3。" class="headerlink" title="2.输入1 3，代表1连向3。"></a>2.输入1 3，代表1连向3。</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cnt++;</span><br><span class="line">head[<span class="number">1</span>]=cnt;</span><br><span class="line">edge[cnt].to=<span class="number">3</span>;结点<span class="number">1</span>的儿子是<span class="number">3</span></span><br><span class="line"><span class="comment">//这时,3成为了结点1的儿子，不过2被挤了下去...</span></span><br><span class="line"><span class="comment">//所以要引入结构体中next元素，记录：3还有个兄弟（next）是2</span></span><br><span class="line"><span class="comment">//所以代码要换成：</span></span><br><span class="line">cnt++;</span><br><span class="line">edge[cnt].to=<span class="number">3</span>;<span class="comment">//结点1连向3</span></span><br><span class="line">edge[cnt].next=head[<span class="number">1</span>];<span class="comment">//3的兄弟是2</span></span><br><span class="line">head[<span class="number">1</span>]=cnt;<span class="comment">//更新head</span></span><br></pre></td></tr></table></figure>
-<p>此时：<br>$cnt=2$</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">$edge$</th>
-<th style="text-align:center">$cnt=1$</th>
-<th style="text-align:center">$cnt=2$</th>
-<th style="text-align:center">$ cnt=3$</th>
-<th style="text-align:center">$cnt=4$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$to $</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$3$</td>
-<td style="text-align:center">$ 0$</td>
-<td style="text-align:center">$0$</td>
-</tr>
-<tr>
-<td style="text-align:center">$next$</td>
-<td style="text-align:center">$ 0 $</td>
-<td style="text-align:center">$1 $</td>
-<td style="text-align:center">$0$</td>
-<td style="text-align:center">$0$</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">$head $</th>
-<th style="text-align:center">下标$=1 $</th>
-<th style="text-align:center">下标$=2$</th>
-<th style="text-align:center">下标$=3 $</th>
-<th style="text-align:center">下标$=4 $</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">值</td>
-<td style="text-align:center">$2 $</td>
-<td style="text-align:center">$ 0 $</td>
-<td style="text-align:center">$ 0 $</td>
-<td style="text-align:center">$ 0 $</td>
-</tr>
-</tbody>
-</table>
-<h4 id="3-输入1-4，代表1连向4。"><a href="#3-输入1-4，代表1连向4。" class="headerlink" title="3.输入1 4，代表1连向4。"></a>3.输入1 4，代表1连向4。</h4><p>此时：<br>$cnt=3$</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">$edge$</th>
-<th style="text-align:center">$cnt=1$</th>
-<th style="text-align:center">$cnt=2$</th>
-<th style="text-align:center">$ cnt=3$</th>
-<th style="text-align:center">$cnt=4$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$to $</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$3$</td>
-<td style="text-align:center">$ 4$</td>
-<td style="text-align:center">$0$</td>
-</tr>
-<tr>
-<td style="text-align:center">$next$</td>
-<td style="text-align:center">$ 0 $</td>
-<td style="text-align:center">$1 $</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$0$</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">$head $</th>
-<th style="text-align:center">下标$=1 $</th>
-<th style="text-align:center">下标$=2$</th>
-<th style="text-align:center">下标$=3 $</th>
-<th style="text-align:center">下标$=4 $</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">值</td>
-<td style="text-align:center">$3 $</td>
-<td style="text-align:center">$ 0 $</td>
-<td style="text-align:center">$ 0 $</td>
-<td style="text-align:center">$ 0 $</td>
-</tr>
-</tbody>
-</table>
-<h4 id="4-输入2-3，代表2连向3。"><a href="#4-输入2-3，代表2连向3。" class="headerlink" title="4.输入2 3，代表2连向3。"></a>4.输入2 3，代表2连向3。</h4><p>此时：<br>$cnt=4$</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">$edge$</th>
-<th style="text-align:center">$cnt=1$</th>
-<th style="text-align:center">$cnt=2$</th>
-<th style="text-align:center">$ cnt=3$</th>
-<th style="text-align:center">$cnt=4$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$to $</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$3$</td>
-<td style="text-align:center">$ 4$</td>
-<td style="text-align:center">$3$</td>
-</tr>
-<tr>
-<td style="text-align:center">$next$</td>
-<td style="text-align:center">$ 0 $</td>
-<td style="text-align:center">$1 $</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$0$</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">$head $</th>
-<th style="text-align:center">下标$=1 $</th>
-<th style="text-align:center">下标$=2$</th>
-<th style="text-align:center">下标$=3 $</th>
-<th style="text-align:center">下标$=4 $</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">值</td>
-<td style="text-align:center">$3 $</td>
-<td style="text-align:center">$ 4 $</td>
-<td style="text-align:center">$ 0 $</td>
-<td style="text-align:center">$ 0 $</td>
-</tr>
-</tbody>
-</table>
-<p><strong>注意</strong>：$edge[cnt].next$ 和$head[1]$存贮的都是结构体下标（即$cnt$的值）若要访问指向的边的编号，分别用$edge[edge[cnt].next].to$，$edge[head[1]].to$</p>
-<p><strong>若需要记录权值，在结构体中加入一个元素即可</strong></p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><p>带权值：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span> </span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line">    <span class="keyword">int</span> next;</span><br><span class="line">    <span class="keyword">int</span> to;</span><br><span class="line">    <span class="keyword">int</span> wei;</span><br><span class="line">&#125;edge[MAXM];</span><br><span class="line"><span class="keyword">int</span> head[MAXN];<span class="comment">//head[i]为i点的第一条边</span></span><br><span class="line"><span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> w)</span> <span class="comment">//起点，终点，权值 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    edge[++cnt].next=head[u];<span class="comment">//更新cnt</span></span><br><span class="line">    edge[cnt].to=v;</span><br><span class="line">    edge[cnt].w=w;</span><br><span class="line">    head[u]=cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="keyword">int</span> a,b,wei;</span><br><span class="line">        addedge(a,b,wei);</span><br><span class="line">        <span class="comment">//如果是无向图，还要addedge(b,a,wei);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p> 这里的$next$指的是遍历时的下一条边，$head$指的是遍历时的第一条边，而存边时相当于反过来操作，所以$next$记录上一条边，而$head$记录最后一条边。</p>
-<hr>
-<h1 id="边的遍历"><a href="#边的遍历" class="headerlink" title="边的遍历"></a>边的遍历</h1><p>在遍历以x为起点的所有边时，只需要这样就行</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=head[x];i;i=edge[i].next)</span><br></pre></td></tr></table></figure>
-<p>这个循环的结束条件是$i$等于$0$，因为最后一条边，也就是存边时第一条边，在把$head$值存进$next$时，$head$还没有更新过，也就是$0$。所以当$next$返回$0$时，就说明这些边遍历完毕了。</p>
-<hr>
-<h1 id="优势与特点"><a href="#优势与特点" class="headerlink" title="优势与特点"></a>优势与特点</h1><p>既可以存图，也可以存树，比起邻接矩阵，链式前向星的空间复杂度是$O(n)$,大大节省了存储空间，因为按边存储省掉了很多两点无边的空间。并且在遍历的时候，那些与起点无边相连的点也不需要进行处理，可以说时间和空间都占优势，这就是被OIer们广泛使用的原因。</p>
-<h1 id="补充-技巧"><a href="#补充-技巧" class="headerlink" title="补充+技巧"></a>补充+技巧</h1><p> （$2019/1/15 update​$）<br> <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> w)</span> <span class="comment">//起点，终点，权值 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    edge[++cnt].next=head[u];<span class="comment">//更新cnt</span></span><br><span class="line">    edge[cnt].to=v;</span><br><span class="line">    edge[cnt].w=w;</span><br><span class="line">    head[u]=cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这个代码中，$cnt$代表边的编号。</p>
-<p>如果$cnt​$初始值赋为$1​$,存的是无向图，那么：</p>
-<p>边$cnt$的反向边是$cnt$^$1$</p>
-
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文发表于：</p>
+<ul>
+<li>个人博客：<a href="https://2018haha.github.io" target="_blank" rel="noopener">链接</a></li>
+<li>洛谷博客：<a href="https://www.luogu.org/blog/2018--haha/solution-p3381" target="_blank" rel="noopener">链接</a></li>
+</ul>
+<p>网络流是OI中比较常出现的算法，而最小费用最大流是其最常用的算法之一，阅读本文前，请确保掌握了网络最大流的Dinic的求法，详见<a href="https://2018haha.github.io/2019/06/27/%E7%BD%91%E7%BB%9C%E6%9C%80%E5%A4%A7%E6%B5%81/#more" target="_blank" rel="noopener">网络最大流</a></p>
+<h1 id="最小费用最大流算法"><a href="#最小费用最大流算法" class="headerlink" title="最小费用最大流算法"></a>最小费用最大流算法</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>最小费用最大流（以下简称费用流），是在网络最大流的基础上，给每个边增加了另一个值——费用，代表每流过一个单位的流量，就会耗费这些费用。而费用流算法，就是在求最大流的同时，找出所花费用最小的方案，并求出这个最小费用。</p>
+<h2 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h2><p>首先，对于同一个图，它的最大流是一个固定的值，但是有很多方案，而求费用最小的走法，便可以利用<strong>最短路算法</strong>，以费用为最短路的边权。</p>
+<p>思考一下，Dinic中的反边思想实际上是让程序可以沿着反边跑回去，达到反悔目的。所以费用流中，反边的费用需要设置成正边的相反数，保证在返回时费用也会还回来。</p>
+<p>由于反边有负边权，所以要用<del>已死的</del>SPFA</p>
+<p>把$Dinic$中的$Bfs$改为$SPFA$即可,每次找残量图中$S-T$的最短路径（费用作为边权），并按照$Dinic$的方式增广这条路径。</p>
+<p>$Dinic$增广时需要把残量图中流量更改，所以要用能记录路径的$SPFA$</p>
+<h3 id="建图"><a href="#建图" class="headerlink" title="建图"></a>建图</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> head[N],to[N],next[N],f[N],c[N];<span class="comment">//f是容量，c是费用</span></span><br><span class="line"><span class="keyword">int</span> cnt=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z,<span class="keyword">int</span> cost)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    to[++cnt]=y;</span><br><span class="line">    f[cnt]=z;</span><br><span class="line">    c[cnt]=cost;</span><br><span class="line">    next[cnt]=head[x];</span><br><span class="line">    head[x]=cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="SPFA"><a href="#SPFA" class="headerlink" title="SPFA"></a>SPFA</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dis[N];<span class="comment">/*spfa的距离数组*/</span></span><br><span class="line"><span class="keyword">int</span> flow[N];<span class="comment">/*源点到此处流量*/</span></span><br><span class="line"><span class="keyword">int</span> vis[N];</span><br><span class="line"><span class="keyword">int</span> pre[N];<span class="comment">//每个点的前驱 </span></span><br><span class="line"><span class="keyword">int</span> last[N];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Spfa</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(dis,<span class="number">0x7f</span>,<span class="keyword">sizeof</span>(dis));</span><br><span class="line">	<span class="built_in">memset</span>(flow,<span class="number">0x7f</span>,<span class="keyword">sizeof</span>(flow));</span><br><span class="line">	<span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="keyword">sizeof</span>(vis));</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">	q.push(S);</span><br><span class="line">	vis[S]=<span class="number">1</span>,dis[S]=<span class="number">0</span>;</span><br><span class="line">	pre[T]=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> u=q.front();</span><br><span class="line">		q.pop();</span><br><span class="line">		vis[u]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i;i=next[i])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> v=to[i];</span><br><span class="line">			<span class="keyword">if</span>(f[i]&gt;<span class="number">0</span> &amp;&amp; dis[v]&gt;dis[u]+c[i])<span class="comment">//有残量，能松弛</span></span><br><span class="line">			&#123;</span><br><span class="line">				dis[v]=dis[u]+c[i];<span class="comment">//更新距离</span></span><br><span class="line">				pre[v]=u;<span class="comment">//SPFA记录前驱</span></span><br><span class="line">				last[v]=i;<span class="comment">//记录边的编号，便于增广时更改边权 </span></span><br><span class="line">				flow[v]=min(flow[u],f[i]);</span><br><span class="line">				<span class="keyword">if</span>(!vis[v])</span><br><span class="line">				&#123;</span><br><span class="line">					vis[v]=<span class="number">1</span>;</span><br><span class="line">					q.push(v);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ~pre[T];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> Flow,Cost;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Mcmf</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(Spfa())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> u=T;</span><br><span class="line">		Flow+=flow[T];</span><br><span class="line">		Cost+=flow[T]*dis[T];</span><br><span class="line">		<span class="keyword">while</span>(u!=S)<span class="comment">//遍历这次的增广路（最短路） </span></span><br><span class="line">		&#123;</span><br><span class="line">			f[last[u]]-=flow[T];<span class="comment">//更新边权 </span></span><br><span class="line">			f[last[u]^<span class="number">1</span>]+=flow[T];</span><br><span class="line">			u=pre[u];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这种费用流算法实际上就是在增广时优先考虑费用（用最短路SPFA实现），保证费用最小（反正由于反边的存在，Dinic怎么流到最后都能流出最大流 ）。</p>
+<p>完整代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> next adjagag</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>; </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1000010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> head[N],to[N],next[N],f[N],c[N];</span><br><span class="line"><span class="keyword">int</span> cnt=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,S,T;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z,<span class="keyword">int</span> cost)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    to[++cnt]=y;</span><br><span class="line">    f[cnt]=z;</span><br><span class="line">    c[cnt]=cost;</span><br><span class="line">    next[cnt]=head[x];</span><br><span class="line">    head[x]=cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dis[N];</span><br><span class="line"><span class="keyword">int</span> flow[N];</span><br><span class="line"><span class="keyword">int</span> vis[N];</span><br><span class="line"><span class="keyword">int</span> pre[N];</span><br><span class="line"><span class="keyword">int</span> last[N];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Spfa</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(dis,<span class="number">0x7f</span>,<span class="keyword">sizeof</span>(dis));</span><br><span class="line">	<span class="built_in">memset</span>(flow,<span class="number">0x7f</span>,<span class="keyword">sizeof</span>(flow));</span><br><span class="line">	<span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="keyword">sizeof</span>(vis));</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">	q.push(S);</span><br><span class="line">	vis[S]=<span class="number">1</span>,dis[S]=<span class="number">0</span>;</span><br><span class="line">	pre[T]=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> u=q.front();</span><br><span class="line">		q.pop();</span><br><span class="line">		vis[u]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i;i=next[i])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> v=to[i];</span><br><span class="line">			<span class="keyword">if</span>(f[i]&gt;<span class="number">0</span> &amp;&amp; dis[v]&gt;dis[u]+c[i])</span><br><span class="line">			&#123;</span><br><span class="line">				dis[v]=dis[u]+c[i];</span><br><span class="line">				pre[v]=u;</span><br><span class="line">				last[v]=i;</span><br><span class="line">				flow[v]=min(flow[u],f[i]);</span><br><span class="line">				<span class="keyword">if</span>(!vis[v])</span><br><span class="line">				&#123;</span><br><span class="line">					vis[v]=<span class="number">1</span>;</span><br><span class="line">					q.push(v);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ~pre[T];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Flow,Cost;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Mcmf</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(Spfa())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> u=T;</span><br><span class="line">		Flow+=flow[T];</span><br><span class="line">		Cost+=flow[T]*dis[T];</span><br><span class="line">		<span class="keyword">while</span>(u!=S)</span><br><span class="line">		&#123;</span><br><span class="line">			f[last[u]]-=flow[T];</span><br><span class="line">			f[last[u]^<span class="number">1</span>]+=flow[T];</span><br><span class="line">			u=pre[u];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d %d %d"</span>,&amp;n,&amp;m,&amp;S,&amp;T);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> x,y,z,c;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d %d %d %d"</span>,&amp;x,&amp;y,&amp;z,&amp;c);</span><br><span class="line">        Add(x,y,z,c);</span><br><span class="line">        Add(y,x,<span class="number">0</span>,-c);</span><br><span class="line">    &#125;</span><br><span class="line">    Mcmf();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,Flow,Cost);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -786,7 +579,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/图论/" rel="tag"># 图论</a>
+            <a href="/tags/网络流/" rel="tag"># 网络流</a>
+          
+            <a href="/tags/费用流/" rel="tag"># 费用流</a>
           
         </div>
       
@@ -799,8 +594,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/10/后缀数组/" rel="next" title="后缀数组">
-                <i class="fa fa-chevron-left"></i> 后缀数组
+              <a href="/2019/06/27/网络最大流/" rel="next" title="网络最大流">
+                <i class="fa fa-chevron-left"></i> 网络最大流
               </a>
             
           </div>
@@ -808,10 +603,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/23/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -995,7 +786,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#储存"><span class="nav-number">2.</span> <span class="nav-text">储存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现原理"><span class="nav-number">2.1.</span> <span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例："><span class="nav-number">2.2.</span> <span class="nav-text">实例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#逐步分析："><span class="nav-number">2.2.1.</span> <span class="nav-text">逐步分析：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-输入1-2，代表1连向2。"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">1.输入1 2，代表1连向2。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-输入1-3，代表1连向3。"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">2.输入1 3，代表1连向3。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-输入1-4，代表1连向4。"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">3.输入1 4，代表1连向4。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-输入2-3，代表2连向3。"><span class="nav-number">2.2.1.4.</span> <span class="nav-text">4.输入2 3，代表2连向3。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码："><span class="nav-number">2.3.</span> <span class="nav-text">代码：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注意："><span class="nav-number">2.3.0.1.</span> <span class="nav-text">注意：</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#边的遍历"><span class="nav-number">3.</span> <span class="nav-text">边的遍历</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优势与特点"><span class="nav-number">4.</span> <span class="nav-text">优势与特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#补充-技巧"><span class="nav-number">5.</span> <span class="nav-text">补充+技巧</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最小费用最大流算法"><span class="nav-number">2.</span> <span class="nav-text">最小费用最大流算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现方法"><span class="nav-number">2.2.</span> <span class="nav-text">实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建图"><span class="nav-number">2.2.1.</span> <span class="nav-text">建图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SPFA"><span class="nav-number">2.2.2.</span> <span class="nav-text">SPFA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.2.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
