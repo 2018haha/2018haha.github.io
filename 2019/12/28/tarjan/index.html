@@ -102,24 +102,25 @@
   
 
 
-<meta name="description" content="An OIer From Hrb3z">
-<meta name="keywords" content="关键词">
-<meta property="og:type" content="website">
-<meta property="og:title" content="2018haha&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/文化课/index.html">
+<meta name="description" content="注意：本文对强连通分量的介绍已经完成，而其他部分尚未完成。  前言$\text{Tarjan}​$算法是图论中实用/常用的算法之一，能解决强连通分量，双连通分量，割点和桥，求$\text{LCA}​$等问题，本文将对以上用途一一介绍 强连通分量定义一个强连通分量是指一个有向图中的最大强联通子图。  强联通子图：任意两点可以互相到达的有向图。  如下图，就有3个强联通分量：{1,2,3}，{4}，">
+<meta name="keywords" content="图论,tarjan,强连通分量,双连通分量,割点,桥">
+<meta property="og:type" content="article">
+<meta property="og:title" content="各种Tarjan算法详解">
+<meta property="og:url" content="http://yoursite.com/2019/12/28/tarjan/index.html">
 <meta property="og:site_name" content="2018haha&#39;s Blog">
-<meta property="og:description" content="An OIer From Hrb3z">
+<meta property="og:description" content="注意：本文对强连通分量的介绍已经完成，而其他部分尚未完成。  前言$\text{Tarjan}​$算法是图论中实用/常用的算法之一，能解决强连通分量，双连通分量，割点和桥，求$\text{LCA}​$等问题，本文将对以上用途一一介绍 强连通分量定义一个强连通分量是指一个有向图中的最大强联通子图。  强联通子图：任意两点可以互相到达的有向图。  如下图，就有3个强联通分量：{1,2,3}，{4}，">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-23T08:13:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2018haha&#39;s Blog">
-<meta name="twitter:description" content="An OIer From Hrb3z">
+<meta name="twitter:title" content="各种Tarjan算法详解">
+<meta name="twitter:description" content="注意：本文对强连通分量的介绍已经完成，而其他部分尚未完成。  前言$\text{Tarjan}​$算法是图论中实用/常用的算法之一，能解决强连通分量，双连通分量，割点和桥，求$\text{LCA}​$等问题，本文将对以上用途一一介绍 强连通分量定义一个强连通分量是指一个有向图中的最大强联通子图。  强联通子图：任意两点可以互相到达的有向图。  如下图，就有3个强联通分量：{1,2,3}，{4}，">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/文化课/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/28/tarjan/">
 
 
 
@@ -129,7 +130,7 @@
   };
 </script>
 
-  <title>标签: 文化课 | 2018haha's Blog</title>
+  <title>各种Tarjan算法详解 | 2018haha's Blog</title>
   
 
 
@@ -188,7 +189,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -270,7 +271,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -378,82 +379,332 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
 
 
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>文化课<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/28/tarjan/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="2018haha">
+      <meta itemprop="description" content="An OIer From Hrb3z">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="2018haha's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2019/12/28/会考历史/" itemprop="url">
-            
-              <span itemprop="name">历史</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">各种Tarjan算法详解
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-12-28T14:44:17+08:00" content="2019-12-28">
-          12-28
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-28 14:44:17" itemprop="dateCreated datePublished" datetime="2019-12-28T14:44:17+08:00">2019-12-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-23 16:13:00" itemprop="dateModified" datetime="2019-11-23T16:13:00+08:00">2019-11-23</time>
+              
+            
+          </span>
+			
+			
+					
+
+			
+			
+			
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/tarjan/" itemprop="url" rel="index"><span itemprop="name">tarjan</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/28/tarjan/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/12/28/tarjan/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">3k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">3 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>注意：本文对强连通分量的介绍已经完成，而其他部分尚未完成。</li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>$\text{Tarjan}​$算法是图论中实用/常用的算法之一，能解决强连通分量，双连通分量，割点和桥，求$\text{LCA}​$等问题，本文将对以上用途一一介绍</p>
+<h1 id="强连通分量"><a href="#强连通分量" class="headerlink" title="强连通分量"></a>强连通分量</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>一个强连通分量是指一个<strong>有向图</strong>中的最大强联通子图。</p>
+<ul>
+<li>强联通子图：任意两点可以互相到达的有向图。</li>
+</ul>
+<p>如下图，就有3个强联通分量：{1,2,3}，{4}，{5}。</p>
+<h2 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h2><h3 id="（一）如何找强联通分量。"><a href="#（一）如何找强联通分量。" class="headerlink" title="（一）如何找强联通分量。"></a>（一）如何找强联通分量。</h3><p>进行$\text{Dfs}​$遍历，在$\text{Dfs}​$树上操作。如果在$\text{Dfs}​$时发现遍历到了一个访问过的的点（如下图的$1​$号节点），那么说明从这个点出发，可以回到自己，即这条路径构成了一个<strong>环</strong>，环上的点是强联通的。</p>
+<p>但根据强联通分量的定义，这只能说明他们在同一个强联通分量内，不能保证他们就是一个强连通分量，还要接着处理。</p>
+<h3 id="（二）找完整的强联通分量。"><a href="#（二）找完整的强联通分量。" class="headerlink" title="（二）找完整的强联通分量。"></a>（二）找完整的强联通分量。</h3><p>考虑什么情况下才能保证上述的环构成一个强连通分量。上述的环都是由一个节点$S$和它在Dfs树中的子树构成的，那么只要保证子树内没有节点连向$S$的祖先，即可保证这是一个强连通分量。</p>
+<p>原因比较好理解：若该点子树中有点连向了他的祖先，那么他的祖先便属于这个强连通分量，显然可以构成一个<strong>更大的强联通图</strong>。</p>
+<p>可以参见下图辅助理解。图中$2​$号节点的子树中，$4​$号节点连向了$2​$的父亲——$1​$号点，那么环{2,3,4}就属于强联通分量{1,2,3,4}，而不能单独构成强联通分量。</p>
+<h3 id="（三）找准确的强连通分量。"><a href="#（三）找准确的强连通分量。" class="headerlink" title="（三）找准确的强连通分量。"></a>（三）找准确的强连通分量。</h3><p>以上的算法貌似还有一个问题：我们能通过第二条<code>（二）找完整的强联通分量</code>。找到强联通分量所在的子树，但是我们并不知道子树中哪些节点属于，哪些节点不属于。</p>
+<p><strong>解决办法：</strong></p>
+<p>就像$\text{Dfs}$找环一样，用一个栈记录即可。</p>
+<p>$u​$之后的所有点在u被回溯到时$u​$和栈中所有在它之后的点都构成强连通分量。<br>具体见代码实现。</p>
+<p><del>然后各位神仙们就可以脑补代码实现了，本次就到这里，感谢阅读！</del></p>
+<h2 id="程序实现"><a href="#程序实现" class="headerlink" title="程序实现"></a>程序实现</h2><h3 id="定义一些数组："><a href="#定义一些数组：" class="headerlink" title="定义一些数组："></a>定义一些数组：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dfn[N];<span class="comment">//表示在Dfs时是第几个被搜到的</span></span><br><span class="line"><span class="keyword">int</span> low[N];<span class="comment">//表示这个点的子树节点及他们连向的点的最小$dfn$值。为了实现上面的第二步</span></span><br><span class="line"><span class="keyword">int</span> sta[N&#125;;<span class="comment">//</span></span><br><span class="line"><span class="keyword">int</span> vis[N];<span class="comment">//记录点是否在栈中</span></span><br></pre></td></tr></table></figure>
+<h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><p>1.最外层框架是对树的$\text{Dfs}$。</p>
+<p>2.每遍历到一个节点$u​$:</p>
+<p>(1)初始化<code>dfn[u]=low[u]=++cnt</code>(cnt是计数器）。</p>
+<p>根据数组含义可以理解，在处理前，子树中<code>dfn</code>最小的就是<code>dfn[u]</code>,所以把<code>low[u]</code>初始化为<code>dfn[u]</code></p>
+<p>(2)把$u$入栈，标记<code>vis[u]=1</code></p>
+<p>(3)接着遍历它所能到达的节点$v$，判断$v$是否访问过（方法：看dfn值是否等于0）。</p>
+<p>a.未访问过：接着递归<code>Dfs(v)</code>，并用$v$的$low$值更新$u$:<br><code>low[u]=min(low[u],low[v])</code><br>因为子树中的节点可能连向$u$的祖先节点，所以按照$dfn$的含义更新它。</p>
+<p>b.访问过：</p>
+<p>如果$v$在栈中，说明$u$,$v$在一个强连通分量，那么更新<code>low[u]</code>:<code>low[u]=min(low[u],low[v])</code></p>
+<p>如果不在栈中，说明$u$不能到达$v$,二者没有关联，不进行处理。</p>
+<p>(4) 处理完$u$的子树后：</p>
+<p>此时<code>dfn[u]</code>和<code>low[u]</code>都已经确定好。若<code>dfn[u]==low[u]</code>，根据数组含义，表明$u$是子树中所有点能到达的dfn最小的点，这也就满足了上文中的<code>（二）找完整的强联通分量。</code>（还记得吗），即满足了：<strong>u点与它的子孙节点构成了一个最大的强连通图,即强连通分量</strong>。</p>
+<p>这时我们只需把栈中$u$后面的点和$u$一并弹出（别忘更新$\text{vis}$），弹出的这些点就是一个强连通分量了。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h4 id="Tarjan"><a href="#Tarjan" class="headerlink" title="Tarjan"></a>Tarjan</h4><p>建议参照上文对比阅读代码。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dfn[N],low[N],t;<span class="comment">//数组定义同上面的解释</span></span><br><span class="line"><span class="keyword">int</span> sta[N],top;</span><br><span class="line"><span class="keyword">int</span> vis[N];</span><br><span class="line"><span class="keyword">int</span> col[N],tot;<span class="comment">//用于标记答案，col相同的点在一个强连通分量中</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Tarjan</span><span class="params">(<span class="keyword">int</span> u)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	low[u]=dfn[u]=++t;</span><br><span class="line">	sta[++top]=u;</span><br><span class="line">	vis[u]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i;i=next[i])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> v=to[i];</span><br><span class="line">		<span class="keyword">if</span>(!dfn[v])</span><br><span class="line">		&#123;</span><br><span class="line">			Tarjan(v);</span><br><span class="line">			low[u]=min(low[u],low[v]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(vis[v])</span><br><span class="line">			low[u]=min(low[u],dfn[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dfn[u]==low[u])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> v;</span><br><span class="line">		tot++;</span><br><span class="line">		<span class="keyword">do</span>&#123;</span><br><span class="line">			v=sta[top];</span><br><span class="line">			top--;</span><br><span class="line">			vis[v]=<span class="number">0</span>;</span><br><span class="line">			col[v]=tot;</span><br><span class="line">		&#125;<span class="keyword">while</span>(u!=v);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="主函数"><a href="#主函数" class="headerlink" title="主函数"></a>主函数</h4><p><strong>注意：</strong>由于图可能不连通，从一个点开始Dfs可能不会遍历所有点，所以要这样写：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//遍历所有点</span></span><br><span class="line">		<span class="keyword">if</span>(!dfn[i]) Tarjan(i);</span><br></pre></td></tr></table></figure></p>
+<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>每个点只被入栈，出栈一次，时间复杂度为$O(n)$</p>
+<h1 id="双连通分量、割点和桥"><a href="#双连通分量、割点和桥" class="headerlink" title="双连通分量、割点和桥"></a>双连通分量、割点和桥</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>双联通分量与强联通分量类似，是一个<strong>无向图</strong>中的最大双连通子图。它分为两类：点双连通分量，边双连通分量（简称点双，边双）。</p>
+<h2 id="点双连通分量、割点"><a href="#点双连通分量、割点" class="headerlink" title="点双连通分量、割点"></a>点双连通分量、割点</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>点双连通分量：是指一个<strong>无向图</strong>中的最大点双连通子图。</p>
+<ul>
+<li>点双连通图：一个去掉任意一节点都不会改变它的连通性的<strong>无向图</strong>。</li>
+</ul>
+<p>例如，下面这个图中，{1,2,3,4,5}就是一个点双连通分量</p>
+<ul>
+<li>割点：若一个图中，有一点$A$,删掉该点会使图不连通，那么称点$A$为割点。</li>
+</ul>
+<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p>根据定义可以看出，任意两点间都有至少两条点不重复的路径。</p>
+<p>点双连通分量之间以割点连接，且两个点双连通分量之间有且只有一个割点。</p>
+<h3 id="割点求法"><a href="#割点求法" class="headerlink" title="割点求法"></a>割点求法</h3><p>首先类似于强连通分量，Tarjan求割点也是在Dfs基础上运行的，所以先获得一个Dfs树。</p>
+<ul>
+<li>对于根节点：比较好判断。统计一下根节点的子树个数，若 子树个数$\geq 2$，那么割掉根节点，两个子树便不再联通，即可说明根节点是割点。</li>
+<li>对于非根节点：根据割点的定义和Dfs树，可以知道，割点被割掉后，图一定是被分成了<code>割点的子树A</code>和<code>除子树节点外所有的点B</code>两部分。简单点说，割掉割点相当于把子树剪掉了。经过分析，只要割掉一个点后，A和B不连通，即可保证该点是割点。也就是说，当A中的所有点，都只是通过这个点连接着B，而没有其它边连接A和B，即可说明</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.cnblogs.com/stxy-ferryman/p/7779347.html" target="_blank" rel="noopener">https://www.cnblogs.com/stxy-ferryman/p/7779347.html</a></p>
+<p><a href="https://www.cnblogs.com/ljk123-de-bo-ke/p/10888905.html" target="_blank" rel="noopener">https://www.cnblogs.com/ljk123-de-bo-ke/p/10888905.html</a></p>
+<p><a href="https://www.luogu.org/blog/shiboao/post-ti-gao-ge-dian" target="_blank" rel="noopener">https://www.luogu.org/blog/shiboao/post-ti-gao-ge-dian</a> </p>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图论/" rel="tag"># 图论</a>
+          
+            <a href="/tags/tarjan/" rel="tag"># tarjan</a>
+          
+            <a href="/tags/强连通分量/" rel="tag"># 强连通分量</a>
+          
+            <a href="/tags/双连通分量/" rel="tag"># 双连通分量</a>
+          
+            <a href="/tags/割点/" rel="tag"># 割点</a>
+          
+            <a href="/tags/桥/" rel="tag"># 桥</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/28/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/28/Dijkstra/" rel="prev" title="单源最短路算法——Dijkstra">
+                单源最短路算法——Dijkstra <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -476,8 +727,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -631,6 +891,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#强连通分量"><span class="nav-number">2.</span> <span class="nav-text">强连通分量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#做法"><span class="nav-number">2.2.</span> <span class="nav-text">做法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（一）如何找强联通分量。"><span class="nav-number">2.2.1.</span> <span class="nav-text">（一）如何找强联通分量。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（二）找完整的强联通分量。"><span class="nav-number">2.2.2.</span> <span class="nav-text">（二）找完整的强联通分量。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（三）找准确的强连通分量。"><span class="nav-number">2.2.3.</span> <span class="nav-text">（三）找准确的强连通分量。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序实现"><span class="nav-number">2.3.</span> <span class="nav-text">程序实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义一些数组："><span class="nav-number">2.3.1.</span> <span class="nav-text">定义一些数组：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现过程"><span class="nav-number">2.3.2.</span> <span class="nav-text">实现过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.3.3.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tarjan"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">Tarjan</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主函数"><span class="nav-number">2.3.3.2.</span> <span class="nav-text">主函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间复杂度"><span class="nav-number">2.4.</span> <span class="nav-text">时间复杂度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#双连通分量、割点和桥"><span class="nav-number">3.</span> <span class="nav-text">双连通分量、割点和桥</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">3.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#点双连通分量、割点"><span class="nav-number">3.2.</span> <span class="nav-text">点双连通分量、割点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性质"><span class="nav-number">3.2.2.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#割点求法"><span class="nav-number">3.2.3.</span> <span class="nav-text">割点求法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -833,6 +1110,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -1279,7 +1560,7 @@
   <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
   <script>
   
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('auto', "#更多");
   
   </script>
 
