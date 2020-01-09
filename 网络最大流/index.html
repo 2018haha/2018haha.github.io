@@ -316,10 +316,10 @@
           
         
           
-            <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-23T15:43:40+08:00">
+            <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-01-09T12:04:16+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年11月23日</p>
+    <p>更新于 2020年1月9日</p>
   </a>
 </div>
 
@@ -392,7 +392,9 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文发表于：</p>
+        <p>网络最大流算法能在信息学竞赛中处理很多问题，而且往往是不可被其它算法替代的。而最大流算法则是处理问题的方法之一。本文将介绍网络最大流的算法及其优化。</p>
+<a id="more"></a>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文发表于：</p>
 <ul>
 <li>个人博客：<a href="http://2018haha.github.io/2019/06/27/%E7%BD%91%E7%BB%9C%E6%9C%80%E5%A4%A7%E6%B5%81/#more" target="_blank" rel="noopener">传送门</a></li>
 <li>洛谷博客：<a href="https://www.luogu.org/blog/2018--haha/solution-p3376" target="_blank" rel="noopener">传送门</a></li>
@@ -417,18 +419,18 @@
 <p>4.直到找不到增广路。</p>
 <h2 id="HACK"><a href="#HACK" class="headerlink" title="HACK"></a>HACK</h2><p>如果仔细思考，以上算法仍然存在缺陷：</p>
 <p>如下图：</p>
-<p><img src="/%E5%9B%BE1.png" alt=""></p>
+<p><img src="/picture/4.png" alt=""></p>
 <p>此时找到的最大流是$10$，而实际上是$15$，因此，我们要进行改进。</p>
 <h3 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h3><p>这里是解决网络流问题的关键步骤：</p>
 <p><strong>引入反向边</strong></p>
 <p>即每次在找到增广路，更新残量时，同时将其反向边的残量相应增加：</p>
 <p>具体过程如下图：</p>
-<p><img src="/%E5%9B%BE2.png" alt=""></p>
+<p><img src="/picture/5.png" alt=""></p>
 <p>这样求出的最大流是15，正确。</p>
 <p>实际上，引入了反向边，让程序可以进行一次$S-3-4-1-2-T​$这样的增广。</p>
 <p>第一次增广不一定能寻得恰当的路线，而反向边可以让程序有<strong>反悔的机会</strong>，便是对的。</p>
 <h3 id="效率"><a href="#效率" class="headerlink" title="效率"></a>效率</h3><p>这样多次进行增广，会导致程序效率便得非常低。例如下图：</p>
-<p><img src="/%E5%9B%BE3.png" alt=""></p>
+<p><img src="/picture/6.png" alt=""></p>
 <p>会增广很多次。于是我们引入Dinic算法。</p>
 <h2 id="Dinic"><a href="#Dinic" class="headerlink" title="Dinic"></a>Dinic</h2><p>$\text{Dinic}$在原有算法基础上，增加了分层图，即根据距离源点的距离，将每个点进行深度标号，每次找增广路时都保证深度递增地寻找。</p>
 <h3 id="分层（BFS）"><a href="#分层（BFS）" class="headerlink" title="分层（BFS）"></a>分层（BFS）</h3><p>以下是分层部分的代码：</p>
@@ -481,10 +483,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-23T15:43:40+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-01-09T12:04:16+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年11月23日</p>
+    <p>更新于 2020年1月9日</p>
   </a>
 </div>
 
@@ -506,7 +508,7 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/%E7%BD%91%E7%BB%9C%E6%9C%80%E5%A4%A7%E6%B5%81/&title=网络最大流 | 2018haha's Blog&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/%E7%BD%91%E7%BB%9C%E6%9C%80%E5%A4%A7%E6%B5%81/&title=网络最大流 | 2018haha's Blog&summary=网络最大流算法能在信息学竞赛中处理很多问题，而且往往是不可被其它算法替代的。而最大流算法则是处理问题的方法之一。本文将介绍网络最大流的算法及其优化。"
           
           >
           
@@ -518,7 +520,7 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/%E7%BD%91%E7%BB%9C%E6%9C%80%E5%A4%A7%E6%B5%81/&title=网络最大流 | 2018haha's Blog&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/%E7%BD%91%E7%BB%9C%E6%9C%80%E5%A4%A7%E6%B5%81/&title=网络最大流 | 2018haha's Blog&summary=网络最大流算法能在信息学竞赛中处理很多问题，而且往往是不可被其它算法替代的。而最大流算法则是处理问题的方法之一。本文将介绍网络最大流的算法及其优化。"
           
           >
           
@@ -530,7 +532,7 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/%E7%BD%91%E7%BB%9C%E6%9C%80%E5%A4%A7%E6%B5%81/&title=网络最大流 | 2018haha's Blog&summary="
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/%E7%BD%91%E7%BB%9C%E6%9C%80%E5%A4%A7%E6%B5%81/&title=网络最大流 | 2018haha's Blog&summary=网络最大流算法能在信息学竞赛中处理很多问题，而且往往是不可被其它算法替代的。而最大流算法则是处理问题的方法之一。本文将介绍网络最大流的算法及其优化。"
           
           >
           
@@ -626,6 +628,44 @@
 
 
 <!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+  <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
 
 
 
@@ -830,6 +870,8 @@
         
           <li><a class="flat-box" title="/categories/STL/" href="/categories/STL/"><div class='name'>STL</div><div class='badge'>(1)</div></a></li>
         
+          <li><a class="flat-box" title="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"><div class='name'>博客搭建</div><div class='badge'>(1)</div></a></li>
+        
           <li><a class="flat-box" title="/categories/%E6%95%99%E7%A8%8B/" href="/categories/%E6%95%99%E7%A8%8B/"><div class='name'>教程</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box" title="/categories/%E6%96%87%E5%8C%96%E8%AF%BE/" href="/categories/%E6%96%87%E5%8C%96%E8%AF%BE/"><div class='name'>文化课</div><div class='badge'>(1)</div></a></li>
@@ -885,7 +927,7 @@
 </header>
 
     <div class='content material'>
-      <a href="/tags/Map/" style="font-size: 14px; color: #999">Map</a> <a href="/tags/STL/" style="font-size: 14px; color: #999">STL</a> <a href="/tags/Unordered-map/" style="font-size: 14px; color: #999">Unordered_map</a> <a href="/tags/tarjan/" style="font-size: 14px; color: #999">tarjan</a> <a href="/tags/%E5%89%B2%E7%82%B9/" style="font-size: 14px; color: #999">割点</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">动态规划</a> <a href="/tags/%E5%8C%BA%E9%97%B4%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">区间动态规划</a> <a href="/tags/%E5%8E%86%E5%8F%B2/" style="font-size: 14px; color: #999">历史</a> <a href="/tags/%E5%8F%8C%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/" style="font-size: 14px; color: #999">双连通分量</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 24px; color: #555">图论</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14px; color: #999">字符串</a> <a href="/tags/%E5%AD%98%E5%9B%BE/" style="font-size: 14px; color: #999">存图</a> <a href="/tags/%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/" style="font-size: 14px; color: #999">强连通分量</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 14px; color: #999">教程</a> <a href="/tags/%E6%96%87%E5%8C%96%E8%AF%BE/" style="font-size: 14px; color: #999">文化课</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E6%B5%81/" style="font-size: 14px; color: #999">最大流</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" style="font-size: 14px; color: #999">最短路</a> <a href="/tags/%E6%A0%91%E5%BD%A2%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">树形动态规划</a> <a href="/tags/%E6%A1%A5/" style="font-size: 14px; color: #999">桥</a> <a href="/tags/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">状态压缩动态规划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/" style="font-size: 24px; color: #555">网络流</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 14px; color: #999">背包</a> <a href="/tags/%E8%B4%B9%E7%94%A8%E6%B5%81/" style="font-size: 14px; color: #999">费用流</a>
+      <a href="/tags/Map/" style="font-size: 14px; color: #999">Map</a> <a href="/tags/STL/" style="font-size: 14px; color: #999">STL</a> <a href="/tags/Unordered-map/" style="font-size: 14px; color: #999">Unordered_map</a> <a href="/tags/tarjan/" style="font-size: 14px; color: #999">tarjan</a> <a href="/tags/%E5%89%B2%E7%82%B9/" style="font-size: 14px; color: #999">割点</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">动态规划</a> <a href="/tags/%E5%8C%BA%E9%97%B4%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">区间动态规划</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 14px; color: #999">博客搭建</a> <a href="/tags/%E5%8E%86%E5%8F%B2/" style="font-size: 14px; color: #999">历史</a> <a href="/tags/%E5%8F%8C%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/" style="font-size: 14px; color: #999">双连通分量</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 24px; color: #555">图论</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14px; color: #999">字符串</a> <a href="/tags/%E5%AD%98%E5%9B%BE/" style="font-size: 14px; color: #999">存图</a> <a href="/tags/%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/" style="font-size: 14px; color: #999">强连通分量</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 14px; color: #999">教程</a> <a href="/tags/%E6%96%87%E5%8C%96%E8%AF%BE/" style="font-size: 14px; color: #999">文化课</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E6%B5%81/" style="font-size: 14px; color: #999">最大流</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" style="font-size: 14px; color: #999">最短路</a> <a href="/tags/%E6%A0%91%E5%BD%A2%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">树形动态规划</a> <a href="/tags/%E6%A1%A5/" style="font-size: 14px; color: #999">桥</a> <a href="/tags/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">状态压缩动态规划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/" style="font-size: 24px; color: #555">网络流</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 14px; color: #999">背包</a> <a href="/tags/%E8%B4%B9%E7%94%A8%E6%B5%81/" style="font-size: 14px; color: #999">费用流</a>
     </div>
   </section>
 
