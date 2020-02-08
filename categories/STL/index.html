@@ -328,10 +328,10 @@
           
         
           
-            <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-23T16:13:50+08:00">
+            <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-01-11T13:10:22+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新于 2019年11月23日</p>
+    <p>更新于 2020年1月11日</p>
   </a>
 </div>
 
@@ -357,7 +357,7 @@
       <a class='notlink'>
         <i class="fas fa-keyboard" aria-hidden="true"></i>
         <p>字数统计:</p>
-        <p>559字</p>
+        <p>609字</p>
       </a>
     </div>
     <div class="new-meta-item readtime">
@@ -386,7 +386,7 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      
+      <p>$\text{map,unordered_map}​$是$\text{c++STL}​$ 中的一种数据结构，能够实现映射操作，在某些题目中可起到不可替代的作用，本文介绍它们的使用方法。</p>
       
         <div class="readmore">
           <a href="/c++STL-Map%E7%9A%84%E4%BD%BF%E7%94%A8/" class="flat-box">
@@ -419,6 +419,44 @@
     
     <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
     
+    
+      <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
     
 
   
@@ -526,8 +564,11 @@
 </header>
 
   <div class='content material'>
-    <p> 本站为博主新建，正在从旧站搬运中，敬请期待<br>如发现文章有误，欢迎在评论区或QQ联系我指出，谢谢！<br>若需共享友情链接请点击这里 </p>
-
+     目前Latex与文章发布有锅，正在修复
+本站为博主新建，正在从旧站搬运中，敬请期待
+如发现文章有误，欢迎在评论区或QQ联系我指出，谢谢！
+友联页待补充
+若需共享友情链接请点击这里 
   </div>
 </section>
 
@@ -603,11 +644,13 @@
         
           <li><a class="flat-box" title="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"><div class='name'>博客搭建</div><div class='badge'>(1)</div></a></li>
         
+          <li><a class="flat-box" title="/categories/%E6%80%BB%E7%BB%93/" href="/categories/%E6%80%BB%E7%BB%93/"><div class='name'>总结</div><div class='badge'>(1)</div></a></li>
+        
           <li><a class="flat-box" title="/categories/%E6%95%99%E7%A8%8B/" href="/categories/%E6%95%99%E7%A8%8B/"><div class='name'>教程</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box" title="/categories/%E6%96%87%E5%8C%96%E8%AF%BE/" href="/categories/%E6%96%87%E5%8C%96%E8%AF%BE/"><div class='name'>文化课</div><div class='badge'>(1)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/%E7%AE%97%E6%B3%95/" href="/categories/%E7%AE%97%E6%B3%95/"><div class='name'>算法</div><div class='badge'>(7)</div></a></li>
+          <li><a class="flat-box" title="/categories/%E7%AE%97%E6%B3%95/" href="/categories/%E7%AE%97%E6%B3%95/"><div class='name'>算法</div><div class='badge'>(8)</div></a></li>
         
           <li><a class="flat-box child" title="/categories/%E7%AE%97%E6%B3%95/tarjan/" href="/categories/%E7%AE%97%E6%B3%95/tarjan/"><div class='name'>tarjan</div><div class='badge'>(1)</div></a></li>
         
@@ -616,6 +659,8 @@
           <li><a class="flat-box child" title="/categories/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/" href="/categories/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/"><div class='name'>图论</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box child" title="/categories/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/" href="/categories/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/"><div class='name'>字符串</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child" title="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/" href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/"><div class='name'>数学</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box child" title="/categories/%E7%AE%97%E6%B3%95/%E6%9C%80%E7%9F%AD%E8%B7%AF/" href="/categories/%E7%AE%97%E6%B3%95/%E6%9C%80%E7%9F%AD%E8%B7%AF/"><div class='name'>最短路</div><div class='badge'>(1)</div></a></li>
         
@@ -658,7 +703,7 @@
 </header>
 
     <div class='content material'>
-      <a href="/tags/Map/" style="font-size: 14px; color: #999">Map</a> <a href="/tags/STL/" style="font-size: 14px; color: #999">STL</a> <a href="/tags/Unordered-map/" style="font-size: 14px; color: #999">Unordered_map</a> <a href="/tags/tarjan/" style="font-size: 14px; color: #999">tarjan</a> <a href="/tags/%E5%89%B2%E7%82%B9/" style="font-size: 14px; color: #999">割点</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">动态规划</a> <a href="/tags/%E5%8C%BA%E9%97%B4%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">区间动态规划</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 14px; color: #999">博客搭建</a> <a href="/tags/%E5%8E%86%E5%8F%B2/" style="font-size: 14px; color: #999">历史</a> <a href="/tags/%E5%8F%8C%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/" style="font-size: 14px; color: #999">双连通分量</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 24px; color: #555">图论</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14px; color: #999">字符串</a> <a href="/tags/%E5%AD%98%E5%9B%BE/" style="font-size: 14px; color: #999">存图</a> <a href="/tags/%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/" style="font-size: 14px; color: #999">强连通分量</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 14px; color: #999">教程</a> <a href="/tags/%E6%96%87%E5%8C%96%E8%AF%BE/" style="font-size: 14px; color: #999">文化课</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E6%B5%81/" style="font-size: 14px; color: #999">最大流</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" style="font-size: 14px; color: #999">最短路</a> <a href="/tags/%E6%A0%91%E5%BD%A2%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">树形动态规划</a> <a href="/tags/%E6%A1%A5/" style="font-size: 14px; color: #999">桥</a> <a href="/tags/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">状态压缩动态规划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/" style="font-size: 24px; color: #555">网络流</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 14px; color: #999">背包</a> <a href="/tags/%E8%B4%B9%E7%94%A8%E6%B5%81/" style="font-size: 14px; color: #999">费用流</a>
+      <a href="/tags/Map/" style="font-size: 14px; color: #999">Map</a> <a href="/tags/STL/" style="font-size: 14px; color: #999">STL</a> <a href="/tags/Unordered-map/" style="font-size: 14px; color: #999">Unordered_map</a> <a href="/tags/tarjan/" style="font-size: 14px; color: #999">tarjan</a> <a href="/tags/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/" style="font-size: 14px; color: #999">中国剩余定理</a> <a href="/tags/%E5%88%97%E8%A1%A8/" style="font-size: 14px; color: #999">列表</a> <a href="/tags/%E5%89%B2%E7%82%B9/" style="font-size: 14px; color: #999">割点</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">动态规划</a> <a href="/tags/%E5%8C%BA%E9%97%B4%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">区间动态规划</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 24px; color: #555">博客搭建</a> <a href="/tags/%E5%8E%86%E5%8F%B2/" style="font-size: 14px; color: #999">历史</a> <a href="/tags/%E5%8F%8C%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/" style="font-size: 14px; color: #999">双连通分量</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 24px; color: #555">图论</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 14px; color: #999">字符串</a> <a href="/tags/%E5%AD%98%E5%9B%BE/" style="font-size: 14px; color: #999">存图</a> <a href="/tags/%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/" style="font-size: 14px; color: #999">强连通分量</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 14px; color: #999">总结</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 14px; color: #999">教程</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 14px; color: #999">数学</a> <a href="/tags/%E6%96%87%E5%8C%96%E8%AF%BE/" style="font-size: 14px; color: #999">文化课</a> <a href="/tags/%E6%9C%80%E5%A4%A7%E6%B5%81/" style="font-size: 14px; color: #999">最大流</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" style="font-size: 14px; color: #999">最短路</a> <a href="/tags/%E6%A0%91%E5%BD%A2%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">树形动态规划</a> <a href="/tags/%E6%A1%A5/" style="font-size: 14px; color: #999">桥</a> <a href="/tags/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 14px; color: #999">状态压缩动态规划</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 14px; color: #999">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/" style="font-size: 24px; color: #555">网络流</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 14px; color: #999">背包</a> <a href="/tags/%E8%B4%B9%E7%94%A8%E6%B5%81/" style="font-size: 14px; color: #999">费用流</a>
     </div>
   </section>
 
@@ -678,8 +723,7 @@
 <footer id="footer" class="clearfix">
   
     <div class="footer">
-      <p>© 2019-2020    All rights reserved.</p>
-
+      © 2019-2020    All rights reserved.
     </div>
     <br>
   
@@ -721,8 +765,7 @@
     </div>
   
   <br>
-  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
-</div>
+  <div>博客内容遵循 [署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</div>
   <div>
     本站使用
     <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a>
